@@ -17,15 +17,11 @@ function Board() {
     freshBoard();
   }, []);
 
-  const updateFlag = (e) => {
-    e.preventDefault();
-    console.log("Right Click");
-  };
-
-  return (
-    <div className="parent">
-      <h1>board</h1>
-    </div>
-  );
+  if (!grid.board) {
+    return <div>Loading</div>;
+  }
+  return grid.board.map((singleRow) => {
+    return <div>{JSON.stringify(singleRow)}</div>;
+  });
 }
 export default Board;
