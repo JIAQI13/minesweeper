@@ -1,6 +1,6 @@
 export const revealed = (arr, x, y, newNonMinesCount) => {
   if (arr[x][y].revealed) {
-    return arr;
+    return;
   }
 
   // Stack of all the cells which we

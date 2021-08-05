@@ -34,6 +34,9 @@ function Board() {
 
   //left click
   const revealcell = (x, y) => {
+    if (grid[x][y].revealed) {
+      return;
+    }
     let newGrid = JSON.parse(JSON.stringify(grid));
     if (newGrid[x][y].value === "X") {
       alert("game over");
@@ -52,21 +55,30 @@ function Board() {
   return (
     <>
       <p>{nonMinecount}</p>
-      {grid.map((singleRow) => {
-        return (
-          <div style={style}>
-            {singleRow.map((singleBlock) => {
-              return (
-                <Cell
-                  details={singleBlock}
-                  updateFlag={updateFlag}
-                  revealcell={revealcell}
-                ></Cell>
-              );
-            })}
-          </div>
-        );
-      })}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
+        {grid.map((singleRow) => {
+          return (
+            <div style={style}>
+              {singleRow.map((singleBlock) => {
+                return (
+                  <Cell
+                    details={singleBlock}
+                    updateFlag={updateFlag}
+                    revealcell={revealcell}
+                  ></Cell>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
