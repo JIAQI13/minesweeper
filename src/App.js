@@ -1,12 +1,12 @@
-import "./App.css";
+import React from "react";
 import Board from "./components/Board";
+import "./App.css";
 
 function App() {
   return (
-    <>
-      <h1>I am here</h1>
+    <div>
       <Board />
-    </>
+    </div>
   );
 }
 
