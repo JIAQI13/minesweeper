@@ -6,7 +6,7 @@ export default function Cell({ details, updateFlag, revealcell }) {
       width: 40,
       height: 40,
       backgroundColor: "grey",
-      border: "1px solid white",
+      border: "1px solid blue",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -19,7 +19,7 @@ export default function Cell({ details, updateFlag, revealcell }) {
     <div
       style={style.cellStyle}
       onClick={() => {
-        console.log(details);
+        revealcell(details.x, details.y);
       }}
       onContextMenu={(e) => updateFlag(e, details.x, details.y)}
     >

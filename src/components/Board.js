@@ -37,6 +37,7 @@ function Board() {
       setGrid(newGrid);
     }
   };
+
   return grid.map((singleRow) => {
     return (
       <div style={style}>
