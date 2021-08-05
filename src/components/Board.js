@@ -23,12 +23,14 @@ function Board() {
 
   return grid.board.map((singleRow) => {
     return (
-      <div style={{ display: "flex" }}>
+      <div style={style}>
         {singleRow.map((singleBlock) => {
-          console.log(singleBlock.value);
-          return <div>{singleBlock.value}</div>;
+          return (
+            <div style={{ width: 30, height: 30 }}>
+              <Cell details={singleBlock.value}></Cell>
+            </div>
+          );
         })}
-        ;
       </div>
     );
   });
