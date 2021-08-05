@@ -12,23 +12,41 @@ function Board() {
   useEffect(() => {
     function freshBoard() {
       const newBoard = CreateBoard(16, 16, 40);
-      setGrid(newBoard);
+      setGrid(newBoard.board);
     }
     freshBoard();
   }, []);
 
-  if (!grid.board) {
-    return <div>Loading</div>;
-  }
+  //right click Flag cell
+  const updateFlag = (e, x, y) => {
+    e.preventDefault();
+    // deep copy of the object
+    let newGrid = JSON.parse(JSON.stringify(grid));
+    newGrid[x][y].flagged = true;
+    console.log(newGrid[x][y]);
+    setGrid(newGrid);
+  };
 
-  return grid.board.map((singleRow) => {
+  //left click
+  const revealcell = (x, y) => {
+    let newGrid = JSON.parse(JSON.stringify(grid));
+    if (newGrid[x][y].value === "X") {
+      alert("clicked on mine");
+    } else {
+      newGrid[x][y].revealed = true;
+      setGrid(newGrid);
+    }
+  };
+  return grid.map((singleRow) => {
     return (
       <div style={style}>
         {singleRow.map((singleBlock) => {
           return (
-            <div style={{ width: 30, height: 30 }}>
-              <Cell details={singleBlock.value}></Cell>
-            </div>
+            <Cell
+              details={singleBlock}
+              updateFlag={updateFlag}
+              revealcell={revealcell}
+            ></Cell>
           );
         })}
       </div>

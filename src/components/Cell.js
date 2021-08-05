@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Cell({ details, updateFlag }) {
+export default function Cell({ details, updateFlag, revealcell }) {
   const style = {
     cellStyle: {
       width: 40,
@@ -11,19 +11,19 @@ export default function Cell({ details, updateFlag }) {
       justifyContent: "center",
       alignItems: "center",
       fontSize: "20px",
+      cursor: "pointer",
     },
-  };
-  const handleClick = () => {
-    console.log(details);
   };
 
   return (
     <div
       style={style.cellStyle}
-      onClick={handleClick}
-      onContextMenu={(e) => updateFlag(e)}
+      onClick={() => {
+        console.log(details);
+      }}
+      onContextMenu={(e) => updateFlag(e, details.x, details.y)}
     >
-      {details.value}
+      {details.revealed ? details.value : ""}
     </div>
   );
 }
