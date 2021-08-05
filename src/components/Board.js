@@ -20,8 +20,17 @@ function Board() {
   if (!grid.board) {
     return <div>Loading</div>;
   }
+
   return grid.board.map((singleRow) => {
-    return <div>{JSON.stringify(singleRow)}</div>;
+    return (
+      <div style={{ display: "flex" }}>
+        {singleRow.map((singleBlock) => {
+          console.log(singleBlock.value);
+          return <div>{singleBlock.value}</div>;
+        })}
+        ;
+      </div>
+    );
   });
 }
 export default Board;
