@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CreateBoard from "../utils/CreatedBoard";
 import Cell from "./Cell";
+import { revealed } from "../utils/Reveal";
 
 function Board() {
   const [grid, setGrid] = useState([]);
@@ -33,8 +34,9 @@ function Board() {
     if (newGrid[x][y].value === "X") {
       alert("clicked on mine");
     } else {
-      newGrid[x][y].revealed = true;
-      setGrid(newGrid);
+      let newRevealedBoard = revealed(newGrid, x, y);
+      // newGrid[x][y].revealed = true;
+      setGrid(newRevealedBoard.arr);
     }
   };
 
